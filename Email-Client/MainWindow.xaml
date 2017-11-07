@@ -96,7 +96,8 @@
 
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"  FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Sent Mails</Label>
-                            <ListView  Grid.Row="1" Margin="10" Name="outbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
+                            <ListView ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.CanContentScroll="False" Grid.Row="1" Margin="10" Name="outbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
 
                                 <ListView.View>
                                     <GridView>
@@ -136,7 +137,8 @@
 
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"  FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Inbox</Label>
-                            <ListView Grid.Row="1" Margin="10" Name="inbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
+                            <ListView  ScrollViewer.VerticalScrollBarVisibility="Auto"
+          ScrollViewer.CanContentScroll="False" Grid.Row="1" Margin="10" Name="inbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
 
                                 <ListView.View>
                                     <GridView>
