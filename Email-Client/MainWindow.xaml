@@ -11,17 +11,19 @@
             <TabItem Name="Home" Header="Home">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
                         <RowDefinition Height="5*"/>
                         <RowDefinition Height="1*"/>
+
                     </Grid.RowDefinitions>
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
                         <Grid Margin="10,10,30,10" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="28*"/>
-                                <RowDefinition Height="34*"/>
-                                <RowDefinition Height="37*"/>
-                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -40,8 +42,9 @@
                             <TextBox Name="popPort" Grid.Row="2"  Grid.Column="3" Margin="0,8,0,7" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="28,5,28,6" Width="74">User Name :</Label>
                             <TextBox Name="username" Grid.Row="3"  Grid.Column="1" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="3"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="32,5,32,6" Width="66">Password :</Label>
+                            <Label Name="passLabel" Grid.Row="3"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="32,5,32,6" Width="66">Password :</Label>
                             <PasswordBox Name="password" PasswordChar="*"  Grid.Row="3"  Grid.Column="3" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
+                            <Button Margin="70,5,0,0" Name="LogInOut" Grid.Row="4" Grid.Column="3"  Click="logoutLogin_Click">Login</Button>
                         </Grid>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
@@ -65,7 +68,7 @@
                             <TextBox Name="MailTo" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
                             <TextBox Name="MailSubject" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="35,33,25,84" Height="26" Width="70">Message :</Label>
+                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="48,24,29,61" Height="41" Width="79">Message :</Label>
                             <TextBox  Name="MailBody" Margin="0,30" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
                         </Grid>
                     </Border>
@@ -75,8 +78,8 @@
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Margin="10,10,10,22" Grid.Column="1" Name="Send" Click="Send_Click">Send</Button>
-                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Clear" Click="Clear_Click">Logout</Button>
+                        <Button Margin="22,10,10,10" Grid.Column="2" Name="Send" Click="Send_Click">Send</Button>
+
                     </Grid>
 
                 </Grid>
@@ -117,7 +120,7 @@
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
                         <Button Margin="10,10,10,27" Grid.Column="2" Name="SentRefresh" Click="SentRefresh_Click" >Refresh</Button>
-                      
+
                     </Grid>
 
                 </Grid>
@@ -156,7 +159,7 @@
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Button Margin="10,10,10,22" Grid.Column="2" Name="InboxRefresh" Click="InboxRefresh_Click" >Refresh</Button>
                     </Grid>
 

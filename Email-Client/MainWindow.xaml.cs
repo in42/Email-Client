@@ -68,23 +68,39 @@ namespace Email_Client
             }
         }
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        private void logoutLogin_Click(object sender, RoutedEventArgs e)
         {
-            smptPort.Text = "";
-            smptServer.Text = "";
-            username.Text = "";
-            password.Password = "";
-            MailBody.Text = "";
-            MailFrom.Text = "";
-            MailSubject.Text = "";
-            MailTo.Text = "";
-            popPort.Text = "";
-            popServer.Text = "";
-            // PopUsername.Text = "";
-            //PopPassword.Password = "";
-            inbox.ItemsSource = new List<RecievedMail>();
-            selectedMessage.Visibility = Visibility.Hidden;
-            MailInbox.IsSelected = true;
+            if (LogInOut.Content.ToString() == "Logout")
+            {
+                smptPort.Text = "";
+                smptServer.Text = "";
+                username.Text = "";
+                password.Password = "";
+                MailBody.Text = "";
+                MailFrom.Text = "";
+                MailSubject.Text = "";
+                MailTo.Text = "";
+                popPort.Text = "";
+                popServer.Text = "";
+                // PopUsername.Text = "";
+                //PopPassword.Password = "";
+                inbox.ItemsSource = new List<RecievedMail>();
+                selectedMessage.Visibility = Visibility.Hidden;
+                Home.IsSelected = true;
+                LogInOut.Content = "Login";
+                password.Visibility = Visibility.Visible;
+            }
+            else if (LogInOut.Content.ToString() == "Login")
+            {
+                smptPort.IsReadOnly = true;
+                smptServer.IsReadOnly = true;
+                username.IsReadOnly = true;
+                popPort.IsReadOnly = true;
+                popServer.IsReadOnly = true;
+                password.Visibility = Visibility.Hidden;
+                passLabel.Visibility = Visibility.Hidden;
+                LogInOut.Content = "Logout";
+            }
         }
 
         private void SentRefresh_Click(object sender, RoutedEventArgs e)
@@ -132,6 +148,10 @@ namespace Email_Client
                 InboxSubject.Text = item.Subject;
             else
                 InboxSubject.Text = "";
+            if (item != null)
+                InboxBody.Text = item.Body;
+            else
+                InboxBody.Text = "";
 
 
 
