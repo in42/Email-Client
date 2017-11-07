@@ -34,19 +34,8 @@ namespace Email_Client
         {
             try
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient(smptServer.Text);
-
-                mail.From = new MailAddress(MailFrom.Text);
-                mail.To.Add(MailTo.Text);
-                mail.Subject = MailSubject.Text;
-                mail.Body = MailBody.Text;
-
-                SmtpServer.Port = Int32.Parse(smptPort.Text);
-                SmtpServer.Credentials = new System.Net.NetworkCredential(username.Text,password.Password);
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
+                EmailUtils.SendMail(username.Text, password.Password, smptServer.Text, smptPort.Text,
+                    MailFrom.Text, MailTo.Text, MailSubject.Text, MailBody.Text);
 
                 OutboxList.Add(new SentMail() { SendTo = MailTo.Text, Subject = MailSubject.Text, Date = "08-11-2017", Read = false, Body= MailBody.Text });
 
@@ -109,8 +98,8 @@ namespace Email_Client
 
         private void InboxRefresh_Click(object sender, RoutedEventArgs e)
         {
-            List<RecievedMail> items = EmailChecker
-                .getUnreadMessages("pop.gmail.com", 995, true, username.Text, password.Password)
+            List<RecievedMail> items = EmailUtils
+                .GetUnreadMessages("pop.gmail.com", 995, true, username.Text, password.Password)
                 .Select(message => new RecievedMail() {
                     Sender = message.Headers.From.MailAddress.Address,
                     Subject = message.Headers.Subject,
@@ -140,7 +129,7 @@ namespace Email_Client
             selectedMessage.Visibility = Visibility.Visible;
             selectedMessage.IsSelected = true;
             RecievedMail item = (sender as ListView).SelectedItem as RecievedMail;
-            if (item!= null)
+            if (item != null)
                 InboxFrom.Text = item.Sender;
             else
                 InboxFrom.Text = "";
@@ -152,9 +141,6 @@ namespace Email_Client
                 InboxBody.Text = item.Body;
             else
                 InboxBody.Text = "";
-
-
-
         }
     }
 

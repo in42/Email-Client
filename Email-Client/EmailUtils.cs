@@ -3,14 +3,15 @@ using OpenPop.Pop3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Email_Client
 {
-    class EmailChecker
+    class EmailUtils
     {
-        public static List<Message> getUnreadMessages(string hostname, int port, bool useSsl, string username, string password)
+        public static List<Message> GetUnreadMessages(string hostname, int port, bool useSsl, string username, string password)
         {
             using (Pop3Client client = new Pop3Client())
             {
@@ -37,6 +38,31 @@ namespace Email_Client
                 // Now return the fetched messages
                 return allMessages;
             }
-        } 
+        }
+        
+        public static void SendMail(string username, string password,
+            string smtpServer, string smtpPort, string from, string to, string subject, string body)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient(smtpServer);
+
+            mail.From = new MailAddress(from);
+            mail.To.Add(to);
+            mail.Subject = subject;
+            mail.Body = body;
+
+            SmtpServer.Port = Int32.Parse(smtpPort);
+            SmtpServer.Credentials = new System.Net.NetworkCredential(username, password);
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
+        }
+
+        public static void SendReadReceipt(string username, string password,
+            string smtpServer, string smtpPort, string from, string to, string subject, string body)
+        {
+            SendMail(username, password, smtpServer, smtpPort, to, from, "READ RECEIPT: " +
+                subject, body);
+        }
     }
 }
