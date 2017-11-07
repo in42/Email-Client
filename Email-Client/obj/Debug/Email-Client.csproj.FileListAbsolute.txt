@@ -1,0 +1,14 @@
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\bin\Debug\Email-Client.exe.config
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\bin\Debug\Email-Client.exe
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\bin\Debug\Email-Client.pdb
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client.csprojResolveAssemblyReference.cache
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\MainWindow.g.cs
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\App.g.cs
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client_MarkupCompile.cache
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client_MarkupCompile.lref
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\MainWindow.baml
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client.g.resources
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email_Client.Properties.Resources.resources
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client.csproj.GenerateResource.Cache
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client.exe
+C:\Users\SAGNIK MONDAL\Desktop\EmailClient\Email-Client\Email-Client\obj\Debug\Email-Client.pdb
