@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenPop.Mime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -25,7 +26,6 @@ namespace Email_Client
         private String Password;
         public MainWindow()
         {
-            cnt = 0;
             InitializeComponent();
         }
 
