@@ -28,7 +28,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Center" >Log on to SMTP Server</Label>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Log on to SMTP Server</Label>
                             <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Server :</Label>
                             <TextBox Name="smptServer" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Port :</Label>
@@ -53,7 +53,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,1,47,1" Width="154" >New Mail Message</Label>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,1,47,1" Width="154" >New Mail Message</Label>
                             <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">From :</Label>
                             <TextBox Name="MailFrom" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">To :</Label>
@@ -61,7 +61,7 @@
                             <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
                             <TextBox Name="MailSubject" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="35,33,25,84" Height="26" Width="70">Message :</Label>
-                            <TextBox Name="MailBody" Margin="0,30" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
+                            <TextBox  Name="MailBody" Margin="0,30" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
                         </Grid>
                     </Border>
                     <Grid Grid.Row="2">
@@ -76,7 +76,95 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="View Mails" />
+            <TabItem Name="MailInbox" Header="View Mails" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
+                        <Grid Margin="10,10,30,10" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Log on to POP3 Server</Label>
+                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Pop Server :</Label>
+                            <TextBox Name="popServer" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Pop Port :</Label>
+                            <TextBox Name="popPort" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">User Name :</Label>
+                            <TextBox Name="PopUsername" Grid.Row="2"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Password :</Label>
+                            <PasswordBox Name="PopPassword" PasswordChar="*"  Grid.Row="2"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                        </Grid>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
+                        <Grid Margin="10,10,30,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="10*"/>
+
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"  FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Inbox</Label>
+                            <ListView Grid.Row="1" Margin="10" Name="inbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
+
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Sender" Width="100" DisplayMemberBinding="{Binding Sender}" />
+                                        <GridViewColumn Header="Subject" Width="300" DisplayMemberBinding="{Binding Subject}" />
+                                        <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="10,10,10,22" Grid.Column="1" Name="Connect" Click="Connect_Click" >Connect</Button>
+                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Disconnect" Click="Disconnect_Click" >Disconnect</Button>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem  Name="selectedMessage" Header="Selected Message" Visibility="Hidden" >
+                <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
+                    <Grid Margin="10,10,30,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="10*"/>
+                          
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                       
+                        <Label Grid.Row="0"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">From :</Label>
+                        <TextBox IsReadOnly = "True"  Name="InboxFrom" Grid.Row="0"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+
+                        <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
+                        <TextBox Name="InboxSubject" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                        <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="35,33,25,84" Height="26" Width="70">Message :</Label>
+                        <TextBox IsReadOnly = "True" Name="InboxBody" Margin="0,30" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
+                    </Grid>
+                </Border>
+            </TabItem>
         </TabControl>
 
     </Grid>

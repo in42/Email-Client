@@ -75,6 +75,46 @@ namespace Email_Client
             MailTo.Text = "";
         }
 
-        
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+            List<Mail> items = new List<Mail>();
+            items.Add(new Mail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
+            items.Add(new Mail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
+            items.Add(new Mail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
+            inbox.ItemsSource = items;
+        }
+
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            popPort.Text = "";
+            popServer.Text = "";
+            PopUsername.Text = "";
+            PopPassword.Password = "";
+            inbox.ItemsSource = null;
+            selectedMessage.Visibility = Visibility.Hidden;
+            MailInbox.IsSelected = true;
+
+        }
+
+        private void inbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedMessage.Visibility = Visibility.Visible;
+            selectedMessage.IsSelected = true;
+            Mail item = (sender as ListView).SelectedItem as Mail;
+            InboxFrom.Text = item.Sender;
+            InboxSubject.Text = item.Subject;
+
+
+
+        }
+    }
+
+    public class Mail
+    {
+        public string Sender { get; set; }
+
+        public string Subject { get; set; }
+
+        public string Date { get; set; }
     }
 }
