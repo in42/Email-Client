@@ -93,10 +93,17 @@ namespace Email_Client
 
         private void InboxRefresh_Click(object sender, RoutedEventArgs e)
         {
-            List<RecievedMail> items = new List<RecievedMail>();
-            items.Add(new RecievedMail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
-            items.Add(new RecievedMail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
-            items.Add(new RecievedMail() { Sender = "John Doe", Subject = "Dummy Email", Date = "08-11-2017" });
+            List<RecievedMail> items = EmailChecker
+                .getUnreadMessages("pop.gmail.com", 995, true, username.Text, password.Password)
+                .Select(message => new RecievedMail() {
+                    Sender = message.Headers.From.MailAddress.Address,
+                    Subject = message.Headers.Subject,
+                    Body = message.FindFirstPlainTextVersion().GetBodyAsText(),
+                    Date = message.Headers.Date
+                }).ToList();
+            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
+            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
+            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             inbox.ItemsSource = items;
         }
 
