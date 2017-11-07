@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Email_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="600" Width="700">
     <Grid>
         <TabControl>
-            <TabItem Name="composeMail" Header="Compose Mail">
+            <TabItem Name="Home" Header="Home">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -18,9 +18,10 @@
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
                         <Grid Margin="10,10,30,10" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="28*"/>
+                                <RowDefinition Height="34*"/>
+                                <RowDefinition Height="37*"/>
+                                <RowDefinition Height="37*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -28,15 +29,19 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Log on to SMTP Server</Label>
-                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Server :</Label>
-                            <TextBox Name="smptServer" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Port :</Label>
-                            <TextBox Name="smptPort" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">User Name :</Label>
-                            <TextBox Name="username" Grid.Row="2"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Password :</Label>
-                            <PasswordBox Name="password" PasswordChar="*"  Grid.Row="2"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,4,0,32" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Grid.RowSpan="2" >Log In</Label>
+                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="25,8,25,0" Width="80">Smtp Server :</Label>
+                            <TextBox Name="smptServer" Grid.Row="1"  Grid.Column="1" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="31,8,31,0" Width="68">Smtp Port :</Label>
+                            <TextBox Name="smptPort" Grid.Row="1"  Grid.Column="3" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="28,6,28,5" Width="74">Pop Server :</Label>
+                            <TextBox Name="popServer" Grid.Row="2"  Grid.Column="1" Margin="0,8,0,7" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="34,6,34,5" Width="62">Pop Port :</Label>
+                            <TextBox Name="popPort" Grid.Row="2"  Grid.Column="3" Margin="0,8,0,7" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="28,5,28,6" Width="74">User Name :</Label>
+                            <TextBox Name="username" Grid.Row="3"  Grid.Column="1" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="3"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="32,5,32,6" Width="66">Password :</Label>
+                            <PasswordBox Name="password" PasswordChar="*"  Grid.Row="3"  Grid.Column="3" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
                         </Grid>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
@@ -71,46 +76,62 @@
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
                         <Button Margin="10,10,10,22" Grid.Column="1" Name="Send" Click="Send_Click">Send</Button>
-                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Clear" Click="Clear_Click">Clear</Button>
+                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Clear" Click="Clear_Click">Logout</Button>
                     </Grid>
 
                 </Grid>
             </TabItem>
-            <TabItem Name="MailInbox" Header="View Mails" >
+            <TabItem Name="SentMail" Header="Sent Mails" >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="5*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1.5*"/>
                     </Grid.RowDefinitions>
+
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
-                        <Grid Margin="10,10,30,10" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="3*"/>
-                                <RowDefinition Height="3*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Log on to POP3 Server</Label>
-                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Pop Server :</Label>
-                            <TextBox Name="popServer" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Pop Port :</Label>
-                            <TextBox Name="popPort" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">User Name :</Label>
-                            <TextBox Name="PopUsername" Grid.Row="2"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Password :</Label>
-                            <PasswordBox Name="PopPassword" PasswordChar="*"  Grid.Row="2"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
-                        </Grid>
-                    </Border>
-                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
                         <Grid Margin="10,10,30,10">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="10*"/>
+
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"  FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Sent Mails</Label>
+                            <ListView  Grid.Row="1" Margin="10" Name="outbox"  SelectionMode="Single" SelectionChanged="inbox_SelectionChanged">
+
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Send To" Width="100" DisplayMemberBinding="{Binding SendTo}" />
+                                        <GridViewColumn Header="Subject" Width="300" DisplayMemberBinding="{Binding Subject}" />
+                                        <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date}" />
+                                        <GridViewColumn Header="Read" Width="80" DisplayMemberBinding="{Binding Read}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="10,10,10,27" Grid.Column="2" Name="SentRefresh" Click="SentRefresh_Click" >Refresh</Button>
+                      
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Name="MailInbox" Header="Inbox" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="1.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
+                        <Grid Margin="10,10,30,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
                                 <RowDefinition Height="10*"/>
 
                             </Grid.RowDefinitions>
@@ -127,14 +148,14 @@
                             </ListView>
                         </Grid>
                     </Border>
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15*"/>
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Margin="10,10,10,22" Grid.Column="1" Name="Connect" Click="Connect_Click" >Connect</Button>
-                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Disconnect" Click="Disconnect_Click" >Disconnect</Button>
+                        
+                        <Button Margin="10,10,10,22" Grid.Column="2" Name="InboxRefresh" Click="InboxRefresh_Click" >Refresh</Button>
                     </Grid>
 
                 </Grid>
@@ -146,7 +167,7 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="3*"/>
                             <RowDefinition Height="10*"/>
-                          
+
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
@@ -154,7 +175,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                       
+
                         <Label Grid.Row="0"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">From :</Label>
                         <TextBox IsReadOnly = "True"  Name="InboxFrom" Grid.Row="0"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
 
