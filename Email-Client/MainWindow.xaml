@@ -5,9 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Email_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="600">
     <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="48" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156" Margin="109,22,0,0"/>
-        <Button x:Name="button" Content="Click Me" HorizontalAlignment="Left" Margin="109,86,0,0" VerticalAlignment="Top" Width="156" Height="49" Click="button_Click"/>
+        <TabControl>
+            <TabItem Name="composeMail" Header="Compose Mail">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="0" Margin="10,10,10,10">
+                        <Grid Margin="10,10,30,10" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Center" >Log on to SMTP Server</Label>
+                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Server :</Label>
+                            <TextBox Name="smptServer" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Smtp Port :</Label>
+                            <TextBox Name="smptPort" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">User Name :</Label>
+                            <TextBox Name="username" Grid.Row="2"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">Password :</Label>
+                            <PasswordBox Name="password" PasswordChar="*"  Grid.Row="2"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                        </Grid>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
+                        <Grid Margin="10,10,30,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="10*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,1,47,1" Width="154" >New Mail Message</Label>
+                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">From :</Label>
+                            <TextBox Name="MailFrom" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">To :</Label>
+                            <TextBox Name="MailTo" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
+                            <TextBox Name="MailSubject" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="50,30,42,81">Message :</Label>
+                            <TextBox Name="MailBody" Margin="0,30" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
+                        </Grid>
+                    </Border>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Margin="10,10,10,22" Grid.Column="1" Name="Send" Click="Send_Click">Send</Button>
+                        <Button Margin="10,10,10,22" Grid.Column="2" Name="Clear" Click="Clear_Click">Clear</Button>
+                    </Grid>
+               
+                </Grid>
+            </TabItem>
+            <TabItem Header="View Mails" />
+        </TabControl>
+
     </Grid>
 </Window>
