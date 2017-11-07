@@ -60,7 +60,7 @@
                             <TextBox Name="MailTo" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
                             <TextBox Name="MailSubject" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="50,30,42,81">Message :</Label>
+                            <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="35,33,25,84" Height="26" Width="70">Message :</Label>
                             <TextBox Name="MailBody" Margin="0,30" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3"  AcceptsReturn="True"   />
                         </Grid>
                     </Border>
@@ -73,7 +73,7 @@
                         <Button Margin="10,10,10,22" Grid.Column="1" Name="Send" Click="Send_Click">Send</Button>
                         <Button Margin="10,10,10,22" Grid.Column="2" Name="Clear" Click="Clear_Click">Clear</Button>
                     </Grid>
-               
+
                 </Grid>
             </TabItem>
             <TabItem Header="View Mails" />
