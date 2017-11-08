@@ -136,7 +136,7 @@ namespace Email_Client
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
-            inboxList.InsertRange(0, newItems);
+            inboxList.InsertRange(0, newItems.Where(item => !item.IsReadReceipt()).ToList());
             inbox.Items.Refresh();
         }
 
