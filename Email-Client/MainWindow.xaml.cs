@@ -33,6 +33,32 @@ namespace Email_Client
             inbox.ItemsSource = inboxList;
         }
 
+        private void Refresh()
+        {
+            List<ReceivedMail> newItems = EmailUtils
+                .GetUnreadMessages("pop.gmail.com", 995, true, usernameField.Text, passwordField.Password)
+                .Select(message => new ReceivedMail()
+                {
+                    Sender = message.Headers.From.MailAddress.Address,
+                    Subject = message.Headers.Subject,
+                    Body = message.FindFirstPlainTextVersion().GetBodyAsText(),
+                    Date = message.Headers.Date,
+                    Read = false
+                }).ToList();
+            List<ReceivedMail> readReceipts = newItems.Where(item => item.IsReadReceipt()).ToList();
+            foreach (var receipt in readReceipts)
+            {
+                var sentMail = outboxList.Find(item => "READ RECEIPT: " + item.Subject == receipt.Subject);
+                if (sentMail != null)
+                {
+                    sentMail.Read = true;
+                }
+            }
+            outbox.Items.Refresh();
+            inboxList.InsertRange(0, newItems.Where(item => !item.IsReadReceipt()).ToList());
+            inbox.Items.Refresh();
+        }
+
         private void Send_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -111,34 +137,12 @@ namespace Email_Client
 
         private void SentRefresh_Click(object sender, RoutedEventArgs e)
         {
+            Refresh();
         }
 
         private void InboxRefresh_Click(object sender, RoutedEventArgs e)
         {
-            List<ReceivedMail> newItems = EmailUtils
-                .GetUnreadMessages("pop.gmail.com", 995, true, usernameField.Text, passwordField.Password)
-                .Select(message => new ReceivedMail() {
-                    Sender = message.Headers.From.MailAddress.Address,
-                    Subject = message.Headers.Subject,
-                    Body = message.FindFirstPlainTextVersion().GetBodyAsText(),
-                    Date = message.Headers.Date,
-                    Read = false
-                }).ToList();
-            List<ReceivedMail> readReceipts = newItems.Where(item => item.IsReadReceipt()).ToList();
-            foreach (var receipt in readReceipts)
-            {
-                var sentMail = outboxList.Find(item => "READ RECEIPT: " + item.Subject == receipt.Subject);
-                if (sentMail != null)
-                {
-                    sentMail.Read = true;
-                }
-            }
-            outbox.Items.Refresh();
-            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
-            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
-            // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
-            inboxList.InsertRange(0, newItems.Where(item => !item.IsReadReceipt()).ToList());
-            inbox.Items.Refresh();
+            Refresh();
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
