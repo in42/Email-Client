@@ -41,27 +41,27 @@ namespace Email_Client
         }
         
         public static void SendMail(string username, string password,
-            string smtpServer, string smtpPort, string from, string to, string subject, string body)
+            string smtpServer, string smtpPort, string to, string subject, string body)
         {
             MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient(smtpServer);
+            SmtpClient smtpClient = new SmtpClient(smtpServer);
 
-            mail.From = new MailAddress(from);
+            mail.From = new MailAddress(username);
             mail.To.Add(to);
             mail.Subject = subject;
             mail.Body = body;
 
-            SmtpServer.Port = Int32.Parse(smtpPort);
-            SmtpServer.Credentials = new System.Net.NetworkCredential(username, password);
-            SmtpServer.EnableSsl = true;
+            smtpClient.Port = Int32.Parse(smtpPort);
+            smtpClient.Credentials = new System.Net.NetworkCredential(username, password);
+            smtpClient.EnableSsl = true;
 
-            SmtpServer.Send(mail);
+            smtpClient.Send(mail);
         }
 
         public static void SendReadReceipt(string username, string password,
             string smtpServer, string smtpPort, string from, string to, string subject, string body)
         {
-            SendMail(username, password, smtpServer, smtpPort, to, from, "READ RECEIPT: " +
+            SendMail(username, password, smtpServer, smtpPort, from, "READ RECEIPT: " +
                 subject, body);
         }
     }

@@ -22,33 +22,36 @@ namespace Email_Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<SentMail> OutboxList;
+        private List<SentMail> outboxList;
+        private List<ReceivedMail> inboxList;
         public MainWindow()
         {
             InitializeComponent();
-            OutboxList = new List<SentMail> ();
-            outbox.ItemsSource = OutboxList;
+            outboxList = new List<SentMail> ();
+            outbox.ItemsSource = outboxList;
+            inboxList = new List<ReceivedMail>();
+            inbox.ItemsSource = inboxList;
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                EmailUtils.SendMail(username.Text, password.Password, smptServer.Text, smptPort.Text,
-                    MailFrom.Text, MailTo.Text, MailSubject.Text, MailBody.Text);
+                EmailUtils.SendMail(usernameField.Text, passwordField.Password, smtpServer.Text, smtpPort.Text,
+                    MailTo.Text, MailSubject.Text, MailBody.Text);
 
-                OutboxList.Add(new SentMail() { SendTo = MailTo.Text, Subject = MailSubject.Text, Date = "08-11-2017", Read = false, Body= MailBody.Text });
+                outboxList.Add(new SentMail() { SendTo = MailTo.Text, Subject = MailSubject.Text, Date = "08-11-2017", Read = false, Body= MailBody.Text });
 
-                smptPort.Text = "";
-                smptServer.Text = "";
-                username.Text = "";
-                password.Password = "";
+                // smtpPort.Text = "";
+                // smtpServer.Text = "";
+                // usernameField.Text = "";
+                // passwordField.Password = "";
                 MailBody.Text = "";
                 MailFrom.Text = "";
                 MailSubject.Text = "";
                 MailTo.Text = "";
 
-                MessageBox.Show("mail Send");
+                MessageBox.Show("Mail Sent!");
                 
             }
             catch (Exception ex)
@@ -59,36 +62,49 @@ namespace Email_Client
 
         private void logoutLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (LogInOut.Content.ToString() == "Logout")
+            if (LogInOut.Content.ToString() == "Log Out")
             {
-                smptPort.Text = "";
-                smptServer.Text = "";
-                username.Text = "";
-                password.Password = "";
+                smtpPort.Text = "";
+                smtpServer.Text = "";
+                usernameField.Text = "";
+                passwordField.Password = "";
                 MailBody.Text = "";
                 MailFrom.Text = "";
                 MailSubject.Text = "";
                 MailTo.Text = "";
                 popPort.Text = "";
                 popServer.Text = "";
-                // PopUsername.Text = "";
-                //PopPassword.Password = "";
-                inbox.ItemsSource = new List<RecievedMail>();
+
+                inboxList.Clear();
+                inbox.Items.Refresh();
+                outboxList.Clear();
+                outbox.Items.Refresh();
+
                 selectedMessage.Visibility = Visibility.Hidden;
                 Home.IsSelected = true;
-                LogInOut.Content = "Login";
-                password.Visibility = Visibility.Visible;
+                passwordField.Visibility = Visibility.Visible;
+                passLabel.Visibility = Visibility.Visible;
+
+                smtpPort.IsReadOnly = false;
+                smtpServer.IsReadOnly = false;
+                usernameField.IsReadOnly = false;
+                popPort.IsReadOnly = false;
+                popServer.IsReadOnly = false;
+
+                LogInOut.Content = "Log In";
             }
-            else if (LogInOut.Content.ToString() == "Login")
+            else if (LogInOut.Content.ToString() == "Log In")
             {
-                smptPort.IsReadOnly = true;
-                smptServer.IsReadOnly = true;
-                username.IsReadOnly = true;
+                smtpPort.IsReadOnly = true;
+                smtpServer.IsReadOnly = true;
+                usernameField.IsReadOnly = true;
                 popPort.IsReadOnly = true;
                 popServer.IsReadOnly = true;
-                password.Visibility = Visibility.Hidden;
+
+                passwordField.Visibility = Visibility.Hidden;
                 passLabel.Visibility = Visibility.Hidden;
-                LogInOut.Content = "Logout";
+
+                LogInOut.Content = "Log Out";
             }
         }
 
@@ -98,9 +114,9 @@ namespace Email_Client
 
         private void InboxRefresh_Click(object sender, RoutedEventArgs e)
         {
-            List<RecievedMail> items = EmailUtils
-                .GetUnreadMessages("pop.gmail.com", 995, true, username.Text, password.Password)
-                .Select(message => new RecievedMail() {
+            List<ReceivedMail> newItems = EmailUtils
+                .GetUnreadMessages("pop.gmail.com", 995, true, usernameField.Text, passwordField.Password)
+                .Select(message => new ReceivedMail() {
                     Sender = message.Headers.From.MailAddress.Address,
                     Subject = message.Headers.Subject,
                     Body = message.FindFirstPlainTextVersion().GetBodyAsText(),
@@ -109,7 +125,8 @@ namespace Email_Client
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
-            inbox.ItemsSource = items;
+            inboxList.InsertRange(0, newItems);
+            inbox.Items.Refresh();
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
@@ -128,7 +145,7 @@ namespace Email_Client
         {
             selectedMessage.Visibility = Visibility.Visible;
             selectedMessage.IsSelected = true;
-            RecievedMail item = (sender as ListView).SelectedItem as RecievedMail;
+            ReceivedMail item = (sender as ListView).SelectedItem as ReceivedMail;
             if (item != null)
                 InboxFrom.Text = item.Sender;
             else
@@ -144,7 +161,7 @@ namespace Email_Client
         }
     }
 
-    public class RecievedMail
+    public class ReceivedMail
     {
         public string Sender { get; set; }
 

@@ -33,18 +33,18 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"  Margin="10,4,0,32" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Grid.RowSpan="2" >Log In</Label>
                             <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="25,8,25,0" Width="80">Smtp Server :</Label>
-                            <TextBox Name="smptServer" Grid.Row="1"  Grid.Column="1" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
+                            <TextBox Name="smtpServer" Grid.Row="1"  Grid.Column="1" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="31,8,31,0" Width="68">Smtp Port :</Label>
-                            <TextBox Name="smptPort" Grid.Row="1"  Grid.Column="3" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
+                            <TextBox Name="smtpPort" Grid.Row="1"  Grid.Column="3" Margin="0,8,0,4" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="28,6,28,5" Width="74">Pop Server :</Label>
                             <TextBox Name="popServer" Grid.Row="2"  Grid.Column="1" Margin="0,8,0,7" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="2"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="34,6,34,5" Width="62">Pop Port :</Label>
                             <TextBox Name="popPort" Grid.Row="2"  Grid.Column="3" Margin="0,8,0,7" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="28,5,28,6" Width="74">User Name :</Label>
-                            <TextBox Name="username" Grid.Row="3"  Grid.Column="1" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
+                            <TextBox Name="usernameField" Grid.Row="3"  Grid.Column="1" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
                             <Label Name="passLabel" Grid.Row="3"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Margin="32,5,32,6" Width="66">Password :</Label>
-                            <PasswordBox Name="password" PasswordChar="*"  Grid.Row="3"  Grid.Column="3" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
-                            <Button Margin="70,5,0,0" Name="LogInOut" Grid.Row="4" Grid.Column="3"  Click="logoutLogin_Click">Login</Button>
+                            <PasswordBox Name="passwordField" PasswordChar="*"  Grid.Row="3"  Grid.Column="3" Margin="0,7,0,8" VerticalAlignment="Center" Height="22" />
+                            <Button Margin="70,5,0,0" Name="LogInOut" Grid.Row="4" Grid.Column="3"  Click="logoutLogin_Click">Log In</Button>
                         </Grid>
                     </Border>
                     <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="10,10,10,10">
