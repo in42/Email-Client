@@ -123,6 +123,16 @@ namespace Email_Client
                     Date = message.Headers.Date,
                     Read = false
                 }).ToList();
+            List<ReceivedMail> readReceipts = newItems.Where(item => item.IsReadReceipt()).ToList();
+            foreach (var receipt in readReceipts)
+            {
+                var sentMail = outboxList.Find(item => "READ RECEIPT: " + item.Subject == receipt.Subject);
+                if (sentMail != null)
+                {
+                    sentMail.Read = true;
+                }
+            }
+            outbox.Items.Refresh();
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
@@ -142,11 +152,13 @@ namespace Email_Client
 
         }
 
-        private void inbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Inbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedMessage.Visibility = Visibility.Visible;
             selectedMessage.IsSelected = true;
             ReceivedMail item = (sender as ListView).SelectedItem as ReceivedMail;
+
+            
             if (item != null)
                 InboxFrom.Text = item.Sender;
             else
@@ -159,6 +171,13 @@ namespace Email_Client
                 InboxBody.Text = item.Body;
             else
                 InboxBody.Text = "";
+
+            // Send read receipt
+            if (!item.IsReadReceipt())
+            {
+                EmailUtils.SendReadReceipt(usernameField.Text, passwordField.Password, smtpServer.Text,
+                    smtpPort.Text, item.Sender, usernameField.Text, item.Subject, item.Body);
+            }
         }
     }
 
@@ -173,6 +192,11 @@ namespace Email_Client
         public string Body { get; set; }
 
         public bool Read { get; set; }
+
+        public bool IsReadReceipt()
+        {
+            return Subject.StartsWith("READ RECEIPT: ");
+        }
        
     }
 
