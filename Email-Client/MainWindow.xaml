@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Email_Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="700">
+        Title="Mail Client" Height="600" Width="700">
 
         
     <Grid>
@@ -101,7 +101,7 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"  FontWeight="Bold"  Margin="10,1,47,1" Width="154" VerticalAlignment="Center" HorizontalAlignment="Left" >Sent Mails</Label>
                             <ListView ScrollViewer.VerticalScrollBarVisibility="Auto"
-          ScrollViewer.CanContentScroll="False" Grid.Row="1" Margin="10" Name="outbox"  SelectionMode="Single" SelectionChanged="Inbox_SelectionChanged">
+          ScrollViewer.CanContentScroll="False" Grid.Row="1" Margin="10" Name="outbox"  SelectionMode="Single">
 
                                 <ListView.View>
                                     <GridView>

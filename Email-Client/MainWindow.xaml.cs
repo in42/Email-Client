@@ -41,6 +41,7 @@ namespace Email_Client
                     MailTo.Text, MailSubject.Text, MailBody.Text);
 
                 outboxList.Add(new SentMail() { SendTo = MailTo.Text, Subject = MailSubject.Text, Date = "08-11-2017", Read = false, Body= MailBody.Text });
+                outbox.Items.Refresh();
 
                 // smtpPort.Text = "";
                 // smtpServer.Text = "";
