@@ -47,7 +47,7 @@ namespace Email_Client
                 // usernameField.Text = "";
                 // passwordField.Password = "";
                 MailBody.Text = "";
-                MailFrom.Text = "";
+               // MailFrom.Text = "";
                 MailSubject.Text = "";
                 MailTo.Text = "";
 
@@ -69,7 +69,7 @@ namespace Email_Client
                 usernameField.Text = "";
                 passwordField.Password = "";
                 MailBody.Text = "";
-                MailFrom.Text = "";
+                //MailFrom.Text = "";
                 MailSubject.Text = "";
                 MailTo.Text = "";
                 popPort.Text = "";
@@ -120,7 +120,8 @@ namespace Email_Client
                     Sender = message.Headers.From.MailAddress.Address,
                     Subject = message.Headers.Subject,
                     Body = message.FindFirstPlainTextVersion().GetBodyAsText(),
-                    Date = message.Headers.Date
+                    Date = message.Headers.Date,
+                    Read = false
                 }).ToList();
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
             // items.add(new recievedmail() { sender = "john doe", subject = "dummy email", date = "08-11-2017" });
@@ -171,7 +172,8 @@ namespace Email_Client
 
         public string Body { get; set; }
 
-        
+        public bool Read { get; set; }
+       
     }
 
     public class SentMail
@@ -187,4 +189,6 @@ namespace Email_Client
         public bool Read { get; set; }
 
     }
+
+
 }

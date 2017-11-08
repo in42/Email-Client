@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Email_Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="700">
+
+        
     <Grid>
         <TabControl>
             <TabItem Name="Home" Header="Home">
@@ -62,10 +64,9 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,1,47,1" Width="154" >New Mail Message</Label>
-                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">From :</Label>
-                            <TextBox Name="MailFrom" Grid.Row="1"  Grid.Column="1" Margin="0" VerticalAlignment="Center" Height="22" />
-                            <Label Grid.Row="1"  Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">To :</Label>
-                            <TextBox Name="MailTo" Grid.Row="1"  Grid.Column="3" Margin="0" VerticalAlignment="Center" Height="22" />
+                         
+                            <Label Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">To :</Label>
+                            <TextBox Name="MailTo" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Subject :</Label>
                             <TextBox Name="MailSubject" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" Margin="0" VerticalAlignment="Center" Height="22" />
                             <Label Grid.Row="3"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.464,-0.782" Margin="48,24,29,61" Height="41" Width="79">Message :</Label>
@@ -145,7 +146,31 @@
 
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Sender" Width="100" DisplayMemberBinding="{Binding Sender}" />
+                                        <GridViewColumn  Header="Sender" Width="100" DisplayMemberBinding="{Binding Sender}" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ContentControl>
+                                                        <ContentControl.Style>
+                                                            <Style TargetType="{x:Type ContentControl}">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Read}" Value="false">
+                                                                        <Setter Property="ContentTemplate">
+                                                                            <Setter.Value>
+                                                                                <DataTemplate>
+                                                                                    <TextBlock Text="{Binding Path=Sender}"
+                                                   FontWeight="Bold"/>
+                                                                                </DataTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </ContentControl.Style>
+                                                    </ContentControl>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+
+                                        </GridViewColumn>
                                         <GridViewColumn Header="Subject" Width="300" DisplayMemberBinding="{Binding Subject}" />
                                         <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date}" />
                                     </GridView>
